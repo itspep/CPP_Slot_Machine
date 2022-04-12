@@ -20,15 +20,13 @@ int main()
     //allow the user to enter the amount of money to bet on
     do
     {
-    cout<<"Enter the amount of money you wish to bet on into the slot\n";
+    cout<<"Enter the amount of money into the slot\n";
     cin>>bet_money;
-    cout<<"press enter to play\n";
-    cin.get();//to take characters or symbols
-    //defining a random word selection, atleast three times
+    cout<<"you put in "<<bet_money<<endl;
+    srand(time(0));//this function must only be executed once, putting it in a loop will cause some problems
     for(int count=0; count<TIMES; count++)
     {
         //generate the random number
-        srand(time(0));
         //set random number range and store the value in rand_num
         rand_num[count] = rand() % 5+1;
     
@@ -55,22 +53,22 @@ int main()
     threeMatches(rand_num, TIMES);
     cout<<"do you wish to play again?\n";
     cout<<"Y or N"<<endl;
-    char answer;
     enum choice{N, Y};
+    char answer;
     cin>>answer;
     if(!answer)
     {
         cout<<"bye!!!\n";
     }
     }
-    while(answer=true);
+    while(answer);
 
 return 0;
 }
 //defining function header for two matches
 void twoMatches(int rand_num[], int TIME)
 {
-    if(rand_num[2-TIME]==rand_num[TIME] || rand_num[--TIME]==rand_num[TIME] || rand_num[2-TIME]==rand_num[--TIME])
+    if(rand_num[0]==rand_num[3] || rand_num[0]==rand_num[TIME] || rand_num[0]==rand_num[2])
     {
     cout<<"you won two times the amount entered\n";
     }
