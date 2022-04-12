@@ -4,15 +4,19 @@
 #include<cstdlib>
 using namespace std;
 //declare possible function prototypes
-void twoMatches(int[], int);
-void threeMatches(int[], int);
+void wins_n_lost(int, int, int);
 //declare possible global variables
 const int TIMES=3;
 int rand_num[TIMES];
+int slot1;
+int slot2;
+int slot3;
+double amount_won;
+double bet_money;
 int main()
 {
     //define your variables
-    double bet_money;
+    
     char answer;
     enum choice{N, Y};
     //defining an enumerated data type
@@ -46,11 +50,12 @@ int main()
         case Bars:    cout<<"Bars\n";
                         break;
     }
+    slot1=rand_num[0];
+    slot2=rand_num[1];
+    slot3=rand_num[2];
     }
-    //call the function for two matches
-    twoMatches(rand_num, TIMES);
-    //call the function for three matches
-    threeMatches(rand_num, TIMES);
+    //call the function 
+    wins_n_lost(slot1, slot2, slot3);
     cout<<"do you wish to play again?\n";
     cout<<"Y or N"<<endl;
     enum choice{N, Y};
@@ -66,26 +71,22 @@ int main()
 return 0;
 }
 //defining function header for two matches
-void twoMatches(int rand_num[], int TIME)
+void wins_n_lost(int slot1, int slot2, int slot3)
 {
-    if(rand_num[0]==rand_num[3] || rand_num[0]==rand_num[TIME] || rand_num[0]==rand_num[2])
+    if(slot1==slot2||slot1==slot3||slot2==slot3)
     {
     cout<<"you won two times the amount entered\n";
+    amount_won=2*bet_money;
+    cout<<"you won: "<<amount_won<<endl;
     }
-    else
-    {
-        cout<<"sorry! try again.\n";
-    }
-}
-//defining function header for three matches
-void threeMatches(int rand_num[], int TIME)
-{
-    if(rand_num[0]==rand_num[1]==rand_num[3])
+    else if(slot1==slot2==slot3)
     {
         cout<<"you won three times the amount entered\n";
+        amount_won=3*bet_money;
+        cout<<"you won: "<<amount_won<<endl;
     }
     else
     {
-        cout<<"sorry try again\n";
+        cout<<"sorry! you lost\n";
     }
 }
